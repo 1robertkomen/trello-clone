@@ -5,22 +5,22 @@ type AddItemButtonProps = {
 }
 
 export const AppContainer = styled.div`
-  align-items: flex-start;
+  align-items: flex-start; 
   background-color: #3179ba;
   display: flex;
-  flex-direction: row;
-  height : 100%;
-  padding: 20px;
+  flex-direction: row; 
+  height: 100%; 
+  padding: 20px; 
   width: 100%;
 `
 
 export const ColumnContainer = styled.div`
-  background-color : #ebecf0;
+  background-color: #ebecf0;
   width: 300px;
   min-height: 40px;
-  padding: 8px 8px;
-  margin-right: 20px;
-  border-radius: 3px;
+  margin-right: 20px; 
+  border-radius: 3px; 
+  padding: 8px 8px; 
   flex-grow: 0;
 `
 
@@ -42,7 +42,7 @@ export const AddItemButton = styled.button<AddItemButtonProps>`
   background-color: #ffffff3d;
   border-radius: 3px;
   border : none;
-  color: #fff;
+  color: ${(props : AddItemButtonProps)  => (props.dark ? "#000" : "#fff")};
   cursor: pointer;
   max-width: 300px;
   padding: 10px 12px;

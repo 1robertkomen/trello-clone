@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { NewItemFormContainer,NewItemButton,NewItemInput}  from './styles'
+import { useFocus } from './utils/useFocus'
 
 type NewItemFormProps = {
   onAdd(text : string) : void
@@ -7,12 +8,24 @@ type NewItemFormProps = {
 
 export const NewItemForm = ({onAdd} : NewItemFormProps) => {
   const [text,setText] = useState("")
+  const inputRef = useFocus()
+
+  // Enter to save 
+  const handleAddText = (
+    event : React.KeyboardEvent<HTMLInputElement>
+  ) => {
+    if(event.key == "Enter") {
+      onAdd(text)
+    }
+  }
 
   return (
     <NewItemFormContainer>
       <NewItemInput
         value={text}
+        ref={inputRef}
         onChange={(e : any) => setText(e.target.value)}
+        onKeyPress={handleAddText}
       />
       <NewItemButton onClick={() => onAdd(text)}>
         Create
