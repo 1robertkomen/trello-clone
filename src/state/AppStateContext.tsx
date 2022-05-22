@@ -1,6 +1,6 @@
 import { createContext,useContext,FC} from 'react'
 
-const AppStateContext = createContext<AppStateContextProps({} as AppStateContextProps)
+const AppStateContext = createContext<AppStateContextProps>({} as AppStateContextProps)
 
 const appData : AppState = {
   lists: [
@@ -34,21 +34,21 @@ export type AppState = {
 
 type AppStateContextProps = {
   lists : List[]
-  getTaskByListId(id : string) : Task[]
+  getTasksByListId(id : string) : Task[]
 }
 
 
 
 // Create the provider component
 export const AppStateProvider : FC = ({children}) => {
-  const { list } = appData
+  const { lists } = appData
 
-  const getTaskByListId = (id : string) => {
+  const getTasksByListId = (id : string) => {
     return lists.find((list) => list.id === id)?.tasks || []
   }
 
   return (
-    <AppStateContext.Provider values={lists,getTaskByListId}>
+    <AppStateContext.Provider value={{ lists,getTasksByListId}}>
       {children}
     </AppStateContext.Provider>
 
